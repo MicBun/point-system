@@ -11,7 +11,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Auth"
+                    "User"
                 ],
                 "summary": "Login with credential.",
                 "parameters": [
@@ -38,6 +38,11 @@
         },
         "/point": {
             "get": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
                 "description": "Get Point",
                 "produces": [
                     "application/json"
@@ -46,6 +51,15 @@
                     "Point"
                 ],
                 "summary": "Get Point",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -56,6 +70,11 @@
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
                 "description": "Add Point",
                 "produces": [
                     "application/json"
@@ -73,6 +92,13 @@
                         "schema": {
                             "$ref": "#/definitions/controller.UpdatePointInput"
                         }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -85,7 +111,7 @@
                 }
             }
         },
-        "/user": {
+        "/register": {
             "post": {
                 "description": "Create a new user.",
                 "produces": [

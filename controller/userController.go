@@ -21,7 +21,7 @@ type LoginUserInput struct {
 // LoginUser godoc
 // @Summary Login with credential.
 // @Description Logging in to get jwt token to access admin or user api by roles.
-// @Tags Auth
+// @Tags User
 // @Param Body body LoginUserInput true "the body to login a user"
 // @Produce json
 // @Success 200 {object} map[string]interface{}
@@ -59,7 +59,7 @@ type CreateUserInput struct {
 // @Param Body body CreateUserInput true "the body to create a user"
 // @Produce json
 // @Success 200 {object} map[string]interface{}
-// @Router /user [post]
+// @Router /register [post]
 func CreateUser(ctx *gin.Context) {
 	var input CreateUserInput
 	if err := ctx.ShouldBindJSON(&input); err != nil {

@@ -23,7 +23,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Auth"
+                    "User"
                 ],
                 "summary": "Login with credential.",
                 "parameters": [
@@ -50,6 +50,11 @@ const docTemplate = `{
         },
         "/point": {
             "get": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
                 "description": "Get Point",
                 "produces": [
                     "application/json"
@@ -58,6 +63,15 @@ const docTemplate = `{
                     "Point"
                 ],
                 "summary": "Get Point",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -68,6 +82,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
                 "description": "Add Point",
                 "produces": [
                     "application/json"
@@ -85,6 +104,13 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/controller.UpdatePointInput"
                         }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -97,7 +123,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/user": {
+        "/register": {
             "post": {
                 "description": "Create a new user.",
                 "produces": [

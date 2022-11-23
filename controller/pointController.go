@@ -20,6 +20,8 @@ type GetPointOutput struct {
 // @Summary Get Point
 // @Description Get Point
 // @Tags Point
+// @Param Authorization header string true "Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
+// @Security BearerToken
 // @Produce json
 // @Success 200 {object} GetPointOutput
 // @Router /point [get]
@@ -45,6 +47,8 @@ type UpdatePointInput struct {
 // @Description Add Point
 // @Tags Point
 // @Param Body body UpdatePointInput true "the body to add Point"
+// @Param Authorization header string true "Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
+// @Security BearerToken
 // @Produce json
 // @Success 200 {object} GetPointOutput
 // @Router /point [post]

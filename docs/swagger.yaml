@@ -48,10 +48,16 @@ paths:
             type: object
       summary: Login with credential.
       tags:
-      - Auth
+      - User
   /point:
     get:
       description: Get Point
+      parameters:
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -59,6 +65,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/controller.GetPointOutput'
+      security:
+      - BearerToken: []
       summary: Get Point
       tags:
       - Point
@@ -71,6 +79,11 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/controller.UpdatePointInput'
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -78,10 +91,12 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/controller.GetPointOutput'
+      security:
+      - BearerToken: []
       summary: Add Point
       tags:
       - Point
-  /user:
+  /register:
     post:
       description: Create a new user.
       parameters:

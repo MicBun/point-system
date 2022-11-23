@@ -6,4 +6,4 @@ ADD . .
 
 RUN go mod download
 
-ENTRYPOINT go build  && ./point-system
+ENTRYPOINT go build  && ./pointSystem
