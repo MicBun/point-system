@@ -1,0 +1,105 @@
+definitions:
+  controller.CreateUserInput:
+    properties:
+      name:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  controller.GetPointOutput:
+    properties:
+      amount:
+        type: integer
+    type: object
+  controller.LoginUserInput:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  controller.UpdatePointInput:
+    properties:
+      amount:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /login:
+    post:
+      description: Logging in to get jwt token to access admin or user api by roles.
+      parameters:
+      - description: the body to login a user
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.LoginUserInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Login with credential.
+      tags:
+      - Auth
+  /point:
+    get:
+      description: Get Point
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.GetPointOutput'
+      summary: Get Point
+      tags:
+      - Point
+    post:
+      description: Add Point
+      parameters:
+      - description: the body to add Point
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.UpdatePointInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.GetPointOutput'
+      summary: Add Point
+      tags:
+      - Point
+  /user:
+    post:
+      description: Create a new user.
+      parameters:
+      - description: the body to create a user
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.CreateUserInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Create a new user.
+      tags:
+      - User
+swagger: "2.0"
